@@ -26,8 +26,11 @@ ENV MONGODB_PORT ${MONGODB_PORT}
 ENV PATH ${PATH}:/opt/mongodb-linux-x86_64-${MONGODB_VERSION}/bin
 
 EXPOSE $MONGODB_PORT
+
 ADD mongodb-linux-x86_64-${MONGODB_VERSION}.tgz /opt
+
 RUN mkdir -p $DB_MOUNTPOINT
+
 CMD rm /mongodb/data/mongod.lock || true \
   && mongod \
   --dbpath $DB_MOUNTPOINT \
